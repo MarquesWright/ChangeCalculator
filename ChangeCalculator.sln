@@ -1,22 +1,62 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeCalculator", "ChangeCalculator\ChangeCalculator.csproj", "{FC3B294E-ACAE-41DC-81B9-831E9CC7EC74}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FC3B294E-ACAE-41DC-81B9-831E9CC7EC74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC3B294E-ACAE-41DC-81B9-831E9CC7EC74}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC3B294E-ACAE-41DC-81B9-831E9CC7EC74}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC3B294E-ACAE-41DC-81B9-831E9CC7EC74}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-EndGlobal
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ChangeCalculator
+{
+    public partial class frmChangeCalculator : Form
+    {
+        public frmChangeCalculator()
+        {
+            InitializeComponent();
+        }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            // get input from user for the amount of change
+            int change = Convert.ToInt16(txtChange.Text);
+
+            // initialize variables to be used in calculations
+            int quarter = 25;
+            int dime = 10;
+            int nickel = 5;
+
+            // calculate how many quarters
+            int amount = change / quarter;
+
+            // get remaining change after quarters
+            change = change % quarter;
+
+            // calculate how many dimes
+            int amount1 = change / dime;
+
+            // get remaining change after dimes
+            change = change % dime;
+
+            // calculate how many nickels
+            int amount2 = change / nickel;
+
+            // get amount of pennies by getting the remainder of the nickels
+            int amount3 = change % nickel;
+
+            // return the results to the textboxes
+            txtQuarters.Text = amount.ToString();
+            txtDimes.Text = amount1.ToString();
+            txtNickels.Text = amount2.ToString();
+            txtPennies.Text = amount3.ToString();
+
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            // close application
+            this.Close();
+        }
+    }
+}
