@@ -1,0 +1,2 @@
+# ChangeCalculator
+Class exercise
